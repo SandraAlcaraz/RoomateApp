@@ -53,4 +53,14 @@
         android:onClick="goToCodeGeneration"
         android:text="Generate new code" />
 
+    <Button
+        android:id="@+id/roommatesList_button"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/viewCode_button"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="20dp"
+        android:text="Roommates List" />
+
 </RelativeLayout>
