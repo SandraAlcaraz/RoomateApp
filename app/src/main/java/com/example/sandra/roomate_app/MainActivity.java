@@ -5,11 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button logoutBtn;
+    private TextView greetingLabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("Home");
         logoutBtn = findViewById(R.id.logout_btn);
+        greetingLabel = findViewById(R.id.greeting_textView);
+
+        greetingLabel.setText("Hello, " + getIntent().getStringExtra("user"));
     }
 
     public void sessionLogout(View v){
@@ -24,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
-
-
 
     @Override
     public void onBackPressed() {
