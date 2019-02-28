@@ -1,5 +1,6 @@
 package com.example.sandra.roomate_app;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,7 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
 
     private EditText inputEmail, inputPassword;
     private FirebaseAuth auth;
@@ -46,7 +47,6 @@ public class LoginActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         btnSignup = (Button) findViewById(R.id.btn_signup);
         btnLogin = (Button) findViewById(R.id.btn_login);
-        btnReset = (Button) findViewById(R.id.btn_reset_password);
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = inputEmail.getText().toString();
+                final String email = inputEmail.getText().toString();
                 final String password = inputPassword.getText().toString();
 
                 if (TextUtils.isEmpty(email)) {
@@ -95,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                                     }
                                 } else {
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    intent.putExtra("user", email);
                                     startActivity(intent);
                                     finish();
                                 }
