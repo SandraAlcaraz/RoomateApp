@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button logoutBtn, generateCodeBtn;
+    private Button logoutBtn, generateCodeBtn, listviewBtn;
     private TextView greetingLabel;
 
     @Override
@@ -47,5 +47,9 @@ public class MainActivity extends AppCompatActivity {
         setIntent.addCategory(Intent.CATEGORY_HOME);
         setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(setIntent);
+    }
+    public void buttonTest(View v) {
+        Intent intent = new Intent(this, listviewActivity.class);
+        startActivity(intent);
     }
 }
