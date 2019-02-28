@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "703331964607",
+    "firebase_url": "https://roomateapp-da91a.firebaseio.com",
+    "project_id": "roomateapp-da91a",
+    "storage_bucket": "roomateapp-da91a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:703331964607:android:f9c24ffe93f1718f",
+        "android_client_info": {
+          "package_name": "com.example.sandra.roomate_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "703331964607-acp17nsq9ut00nuvlm1ctduta22c1gns.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCP9B3vAChyUqFBYbT4YnvEXQDYNljsDKE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
