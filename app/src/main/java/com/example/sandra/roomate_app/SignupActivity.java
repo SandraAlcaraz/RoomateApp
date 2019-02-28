@@ -51,7 +51,7 @@ public class SignupActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                String email = inputEmail.getText().toString().trim();
+                final String email = inputEmail.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
@@ -84,7 +84,9 @@ public class SignupActivity extends Activity {
                                     Toast.makeText(SignupActivity.this, "Authentication failed." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
                                 } else {
-                                    startActivity(new Intent(SignupActivity.this, MainActivity.class));
+                                    Intent intent = new Intent(SignupActivity.this, JoinGroupActivity.class);
+                                    intent.putExtra("user", email);
+                                    startActivity(intent);
                                     finish();
                                 }
                             }
