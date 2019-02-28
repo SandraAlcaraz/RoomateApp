@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button logoutBtn;
+    private Button logoutBtn, generateCodeBtn;
     private TextView greetingLabel;
 
     @Override
@@ -22,13 +22,23 @@ public class MainActivity extends AppCompatActivity {
         logoutBtn = findViewById(R.id.logout_btn);
         greetingLabel = findViewById(R.id.greeting_textView);
 
-        greetingLabel.setText("Hello, " + getIntent().getStringExtra("user"));
+        String userName = getIntent().getStringExtra("user");
+
+        if (userName!=null){
+            greetingLabel.setText("Hello, " + getIntent().getStringExtra("user"));
+        } else {
+            greetingLabel.setText("Hey there!");
+        }
     }
 
     public void sessionLogout(View v){
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+    }
+
+    public void goToCodeGeneration(View v){
+        startActivity(new Intent(this, CodeGeneratorActivity.class));
     }
 
     @Override

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".JoinGroupActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/app_bg" />
+
+    <TextView
+        android:id="@+id/signup_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="180dp"
+        android:text="Join Group"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/signup_Instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signup_textView"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Type your group code below"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/groupCode_cardView"
+        android:layout_width="337dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signup_Instructions"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        app:cardBackgroundColor="@color/cardview_light_background"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="8dp"
+        app:contentPadding="13dp">
+
+        <EditText
+            android:id="@+id/groupCode_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Group Code"
+            android:inputType="text" />
+
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:id="@+id/join_button"
+        android:layout_width="173dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/groupCode_cardView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:background="@color/colorPrimary"
+        android:onClick="joinGroup"
+        android:text="Join"
+        android:textColor="@android:color/white" />
+
+</RelativeLayout>
