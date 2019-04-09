@@ -41,11 +41,11 @@ public class Group {
         return this.adminId;
     }
 
-    public ArrayList<User> getUsers(){
+    public ArrayList<User> getMembers(){
         return this.members;
     }
 
-    public int numberOfUsers(){
+    public int numberOfMembers(){
         return this.members.size();
     }
 
