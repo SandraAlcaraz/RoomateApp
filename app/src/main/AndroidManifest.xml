@@ -24,6 +24,11 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".listviewActivity" />
+        <activity android:name=".ToDoActivity" />
+        <activity android:name=".MeetingsActivity" />
+        <activity android:name=".AnnouncementActivity" />
+        <activity android:name=".ShoppingActivity" />
+
 
     </application>
 
