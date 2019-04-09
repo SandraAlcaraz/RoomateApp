@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -52,4 +53,26 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, listviewActivity.class);
         startActivity(intent);
     }
+    public void homeButton(View v){
+        Intent homeIntent= new Intent(this, MainActivity.class);
+        startActivity(homeIntent);
+        Toast.makeText(this, "You are in HOME", Toast.LENGTH_SHORT).show();
+    }
+    public void toDoButton(View v){
+        Intent toDoIntent= new Intent(this, ToDoActivity.class);
+        startActivity(toDoIntent);
+    }
+    public void meetingsButton(View v){
+        Intent meetingsIntent= new Intent(this, MeetingsActivity.class);
+        startActivity(meetingsIntent);
+    }
+    public void announcementButton(View v){
+        Intent announcementIntent= new Intent(this, AnnouncementActivity.class);
+        startActivity(announcementIntent);
+    }
+    public void shoppingButton(View v){
+        Intent shoppingIntent= new Intent(this, ShoppingActivity.class);
+        startActivity(shoppingIntent);
+    }
+
 }

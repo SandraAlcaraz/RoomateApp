@@ -5,19 +5,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainActivity">
+
 
     <Button
         android:id="@+id/logout_btn"
-        android:layout_width="384dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="13dp"
-        android:layout_marginLeft="13dp"
-        android:layout_marginBottom="59dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginBottom="2dp"
         android:background="@color/btn_logut_bg"
         android:onClick="sessionLogout"
         android:text="Logout"
@@ -34,9 +36,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="38dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="70dp"
         android:text="TextView"
         android:textColor="@android:color/black"
         android:textSize="24sp"
@@ -63,5 +65,65 @@
         android:layout_marginTop="20dp"
         android:onClick="buttonTest"
         android:text="Roommates List" />
+
+    <ImageButton
+        android:id="@+id/toDo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="225dp"
+        android:layout_marginRight="225dp"
+        android:background="@color/white"
+        android:onClick="toDoButton"
+        app:srcCompat="@mipmap/check_circle" />
+
+    <ImageButton
+        android:id="@+id/home"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="291dp"
+        android:layout_marginRight="291dp"
+        android:background="@color/white"
+        android:onClick="homeButton"
+        app:srcCompat="@mipmap/home" />
+
+    <ImageButton
+        android:id="@+id/announcement"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="92dp"
+        android:layout_marginRight="92dp"
+        android:background="@color/white"
+        android:onClick="announcementButton"
+        app:srcCompat="@mipmap/announcement" />
+
+    <ImageButton
+        android:id="@+id/meetings"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="158dp"
+        android:layout_marginRight="158dp"
+        android:background="@color/white"
+        android:onClick="meetingsButton"
+        app:srcCompat="@mipmap/people" />
+
+    <ImageButton
+        android:id="@+id/shopping"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@color/white"
+        android:onClick="shoppingButton"
+        app:srcCompat="@mipmap/shopping_cart" />
 
 </RelativeLayout>
