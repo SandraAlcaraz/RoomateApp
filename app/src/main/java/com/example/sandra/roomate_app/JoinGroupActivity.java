@@ -26,4 +26,9 @@ public class JoinGroupActivity extends Activity {
         intent.putExtra("user", user);
         startActivity(intent);
     }
+
+    public void createGroup(View v){
+        Intent intent = new Intent(this, CreateGroupActivity.class);
+        startActivity(intent);
+    }
 }
