@@ -3,22 +3,21 @@ package com.example.sandra.roomate_app;
 import java.util.ArrayList;
 
 public class Group {
-    private String id, code, name;
-    private int size, createdBy, adminId;
-    private ArrayList<User> members;
+    private String code, name, createdBy, adminId;
+    private int size;
+    private ArrayList<String> members;
 
-    public Group(String id, String code, String name, int size, int createdBy, int adminId, ArrayList<User> members){
-        this.id = id;
+    public Group(){
+
+    }
+
+    public Group(String code, String name, int size, String createdBy, String adminId, ArrayList<String> members){
         this.code = code;
         this.name = name;
         this.size = size;
         this.createdBy = createdBy;
         this.adminId = adminId;
         this.members = members;
-    }
-
-    public String getId(){
-        return this.id;
     }
 
     public String getCode() {
@@ -33,15 +32,15 @@ public class Group {
         return this.size;
     }
 
-    public int getCreatedBy(){
+    public String getCreatedBy(){
         return this.createdBy;
     }
 
-    public int getAdminId(){
+    public String getAdminId(){
         return this.adminId;
     }
 
-    public ArrayList<User> getMembers(){
+    public ArrayList<String> getMembers(){
         return this.members;
     }
 
@@ -57,7 +56,7 @@ public class Group {
         this.size = size;
     }
 
-    public void setAdmin(int adminId){
+    public void setAdmin(String adminId){
         this.adminId = adminId;
     }
 }

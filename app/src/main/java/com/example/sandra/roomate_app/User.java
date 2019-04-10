@@ -1,18 +1,16 @@
 package com.example.sandra.roomate_app;
 
 public class User {
-    private String id, email, name;
+    private String email, name;
     private int groupId;
 
     public User(){
 
     }
 
-    public User(String id, String email, String name, int groupId){
-        this.id = id;
+    public User(String email, String name){
         this.email = email;
         this.name = name;
-        this.groupId = groupId;
     }
 
     public void setName(String name){
@@ -21,10 +19,6 @@ public class User {
 
     public void setGroupId(int groupId){
         this.groupId = groupId;
-    }
-
-    public String getId(){
-        return this.id;
     }
 
     public String getEmail(){
