@@ -1,14 +1,18 @@
 package com.example.sandra.roomate_app;
 
-import java.text.DateFormat;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Todo {
-    private String id, description, groupId;
+import java.text.DateFormat;
+import java.util.Date;
+
+public class Todo implements Parcelable {
+    private String id, description, groupId, assigneeName;
     private int assignee, createdBy;
     private boolean finished;
-    private DateFormat createdAt, dueDate, finishedAt, updatedAt;
+    private Date createdAt, dueDate, finishedAt, updatedAt;
 
-    public Todo(String id, String description, String groupId, int assignee, int createdBy, DateFormat createdAt, DateFormat dueDate){
+    public Todo(String id, String description, String groupId, int assignee, int createdBy, Date createdAt, Date dueDate, String assigneeName){
         this.id = id;
         this.description = description;
         this.groupId = groupId;
@@ -17,7 +21,30 @@ public class Todo {
         this.finished = false;
         this.createdAt = createdAt;
         this.dueDate = dueDate;
+        this.assigneeName=assigneeName;
     }
+
+    protected Todo(Parcel in) {
+        id = in.readString();
+        description = in.readString();
+        groupId = in.readString();
+        assigneeName = in.readString();
+        assignee = in.readInt();
+        createdBy = in.readInt();
+        finished = in.readByte() != 0;
+    }
+
+    public static final Creator<Todo> CREATOR = new Creator<Todo>() {
+        @Override
+        public Todo createFromParcel(Parcel in) {
+            return new Todo(in);
+        }
+
+        @Override
+        public Todo[] newArray(int size) {
+            return new Todo[size];
+        }
+    };
 
     public String getId(){
         return this.id;
@@ -39,19 +66,19 @@ public class Todo {
         return this.createdBy;
     }
 
-    public DateFormat getCreatedAt(){
+    public Date getCreatedAt(){
         return this.createdAt;
     }
 
-    public DateFormat getDueDate(){
+    public Date getDueDate(){
         return this.dueDate;
     }
 
-    public DateFormat getFinishedAt(){
+    public Date getFinishedAt(){
         return this.finishedAt;
     }
 
-    public DateFormat getUpdatedAt(){
+    public Date getUpdatedAt(){
         return this.updatedAt;
     }
 
@@ -67,15 +94,44 @@ public class Todo {
         this.finished = finished;
     }
 
-    public void setDueDate(DateFormat dueDate){
+    public Boolean getFinished(){
+        return this.finished;
+    }
+
+
+    public void setDueDate(Date dueDate){
         this.dueDate = dueDate;
     }
 
-    public void setUpdatedAt(DateFormat updatedAt){
+    public void setUpdatedAt(Date updatedAt){
         this.updatedAt = updatedAt;
     }
 
-    public void setFinishedAt(DateFormat finishedAt){
+    public void setFinishedAt(Date finishedAt){
         this.finishedAt = finishedAt;
+    }
+
+    public String getAssigneeName() {
+        return assigneeName;
+    }
+
+    public void setAssigneeName(String assigneeName) {
+        this.assigneeName = assigneeName;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(description);
+        dest.writeString(groupId);
+        dest.writeString(assigneeName);
+        dest.writeInt(assignee);
+        dest.writeInt(createdBy);
+        dest.writeByte((byte) (finished ? 1 : 0));
     }
 }
