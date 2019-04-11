@@ -1,6 +1,7 @@
 package com.example.sandra.roomate_app;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,10 +10,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button logoutBtn, generateCodeBtn, listviewBtn;
+    private Button logoutBtn, groupInfoButton, listviewBtn;
     private TextView greetingLabel;
 
     @Override
@@ -22,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Home");
         logoutBtn = findViewById(R.id.logout_btn);
         greetingLabel = findViewById(R.id.greeting_textView);
+        groupInfoButton = findViewById(R.id.groupInfo_button);
 
         String userName = getIntent().getStringExtra("user");
 
@@ -36,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+    }
+
+
+    public void showGroupInfo(View v) {
+        startActivity(new Intent(this, GroupInformationActivity.class));
     }
 
     public void goToRoomatelist(View v) {

@@ -45,21 +45,21 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/viewCode_button"
+        android:id="@+id/groupInfo_button"
         android:layout_width="192dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/greeting_textView"
         android:layout_marginStart="18dp"
         android:layout_marginLeft="18dp"
         android:layout_marginTop="40dp"
-        android:onClick="goToCodeGeneration"
-        android:text="Generate new code" />
+        android:onClick="showGroupInfo"
+        android:text="Group Info" />
 
     <Button
         android:id="@+id/roommatesList_button"
         android:layout_width="192dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/viewCode_button"
+        android:layout_below="@id/groupInfo_button"
         android:layout_marginStart="18dp"
         android:layout_marginLeft="18dp"
         android:layout_marginTop="20dp"

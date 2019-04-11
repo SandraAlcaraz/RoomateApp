@@ -48,6 +48,8 @@ public class Group {
         return this.members.size();
     }
 
+    public void setCode(String code){ this.code = code;}
+
     public void setName(String name){
         this.name = name;
     }
@@ -58,5 +60,9 @@ public class Group {
 
     public void setAdmin(String adminId){
         this.adminId = adminId;
+    }
+
+    public void addMember(String memberId){
+        this.members.add(memberId);
     }
 }
