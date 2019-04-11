@@ -38,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToRoomatelist(View v) {
+        Intent intent = new Intent(this, RoomateListActivity.class);
+        startActivity(intent);
+    }
+
     public void goToCodeGeneration(View v){
         startActivity(new Intent(this, CodeGeneratorActivity.class));
     }
@@ -49,10 +54,7 @@ public class MainActivity extends AppCompatActivity {
         setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(setIntent);
     }
-    public void buttonTest(View v) {
-        Intent intent = new Intent(this, listviewActivity.class);
-        startActivity(intent);
-    }
+
     public void homeButton(View v){
         Intent homeIntent= new Intent(this, MainActivity.class);
         startActivity(homeIntent);

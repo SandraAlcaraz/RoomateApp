@@ -63,7 +63,7 @@
         android:layout_marginStart="18dp"
         android:layout_marginLeft="18dp"
         android:layout_marginTop="20dp"
-        android:onClick="buttonTest"
+        android:onClick="goToRoomatelist"
         android:text="Roommates List" />
 
     <ImageButton
