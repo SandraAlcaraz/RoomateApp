@@ -60,7 +60,7 @@ public class RoomateListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(RoomateListActivity.this, ProfileActivity.class);
-                intent.putExtra("name", root.child(listKeys.get(position)).getKey());
+                intent.putExtra("key", root.child(listKeys.get(position)).getKey());
                 startActivity(intent);
             }
         });
