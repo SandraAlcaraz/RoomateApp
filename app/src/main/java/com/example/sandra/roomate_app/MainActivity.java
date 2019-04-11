@@ -19,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button logoutBtn, generateCodeBtn, listviewBtn;
+    private Button logoutBtn, groupInfoButton, listviewBtn;
     private TextView greetingLabel;
 
     @Override
@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Home");
         logoutBtn = findViewById(R.id.logout_btn);
         greetingLabel = findViewById(R.id.greeting_textView);
+        groupInfoButton = findViewById(R.id.groupInfo_button);
 
         String userName = getIntent().getStringExtra("user");
 
@@ -45,8 +46,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void goToCodeGeneration(View v){
-        startActivity(new Intent(this, CodeGeneratorActivity.class));
+//    public void goToCodeGeneration(View v){
+//        startActivity(new Intent(this, CodeGeneratorActivity.class));
+//    }
+
+    public void showGroupInfo(View v){
+        startActivity(new Intent(this, GroupInformationActivity.class));
     }
 
     @Override
