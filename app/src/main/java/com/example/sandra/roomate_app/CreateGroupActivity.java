@@ -87,5 +87,6 @@ public class CreateGroupActivity extends Activity {
             Toast.makeText(this, "Fill out the fields!", Toast.LENGTH_SHORT).show();
         }
 
+
     }
 }

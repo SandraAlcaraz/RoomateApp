@@ -8,6 +8,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,13 +29,15 @@ import java.util.Set;
 
 public class AnnouncementActivity extends AppCompatActivity {
 
-    private Button add_room;
+    private Button add_room, deleteButton;
     private TextInputEditText room_name;
 
     private ListView listView;
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String> list_of_rooms = new ArrayList<>();
     private String name;
+    private Boolean itemSelected = false;
+    private int selectedPosition = 0;
     private DatabaseReference root = FirebaseDatabase.getInstance().getReference().child("Announcements");
 
     @Override
@@ -46,10 +49,13 @@ public class AnnouncementActivity extends AppCompatActivity {
         add_room = (Button) findViewById(R.id.button);
         room_name = (TextInputEditText) findViewById(R.id.texth);
         listView = (ListView) findViewById(R.id.list);
+        deleteButton = (Button) findViewById(R.id.button4);
+        deleteButton.setEnabled(false);
 
-        arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1 ,list_of_rooms);
+        arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_single_choice,list_of_rooms);
 
         listView.setAdapter(arrayAdapter);
+        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
 
         add_room.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +66,16 @@ public class AnnouncementActivity extends AppCompatActivity {
                 root.updateChildren(map);
             }
         });
+
+        listView.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    public void onItemClick(AdapterView<?> parent,
+                                            View view, int position, long id) {
+                        selectedPosition = position;
+                        itemSelected = true;
+                        deleteButton.setEnabled(true);
+                    }
+                });
 
         root.addValueEventListener(new ValueEventListener() {
             @Override
@@ -83,6 +99,13 @@ public class AnnouncementActivity extends AppCompatActivity {
             }
         });
 
+
+
+    }
+
+    public void deleteItem(View view) {
+        listView.setItemChecked(selectedPosition, false);
+        root.child(list_of_rooms.get(selectedPosition)).removeValue();
     }
 
 
