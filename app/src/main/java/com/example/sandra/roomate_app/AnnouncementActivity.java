@@ -29,7 +29,7 @@ import java.util.Set;
 
 public class AnnouncementActivity extends AppCompatActivity {
 
-    private Button add_room, deleteButton;
+    private Button add_room, deleteButton, changeButton;
     private TextInputEditText room_name;
 
     private ListView listView;
@@ -50,7 +50,9 @@ public class AnnouncementActivity extends AppCompatActivity {
         room_name = (TextInputEditText) findViewById(R.id.texth);
         listView = (ListView) findViewById(R.id.list);
         deleteButton = (Button) findViewById(R.id.button4);
+        changeButton = (Button) findViewById(R.id.button5);
         deleteButton.setEnabled(false);
+        changeButton.setEnabled(false);
 
         arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_single_choice,list_of_rooms);
 
@@ -67,6 +69,7 @@ public class AnnouncementActivity extends AppCompatActivity {
             }
         });
 
+
         listView.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent,
@@ -74,8 +77,10 @@ public class AnnouncementActivity extends AppCompatActivity {
                         selectedPosition = position;
                         itemSelected = true;
                         deleteButton.setEnabled(true);
+                        changeButton.setEnabled(true);
                     }
                 });
+
 
         root.addValueEventListener(new ValueEventListener() {
             @Override
@@ -100,12 +105,27 @@ public class AnnouncementActivity extends AppCompatActivity {
         });
 
 
-
     }
 
     public void deleteItem(View view) {
         listView.setItemChecked(selectedPosition, false);
         root.child(list_of_rooms.get(selectedPosition)).removeValue();
+        deleteButton.setEnabled(false);
+        changeButton.setEnabled(false);
+    }
+
+    public void changeItem(View view){
+        try {
+            listView.setItemChecked(selectedPosition, false);
+            root.child(list_of_rooms.get(selectedPosition)).removeValue();
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put(room_name.getText().toString(),"");
+            root.updateChildren(map);
+            changeButton.setEnabled(false);
+            deleteButton.setEnabled(false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
