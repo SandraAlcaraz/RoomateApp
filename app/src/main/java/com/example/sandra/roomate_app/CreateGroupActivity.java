@@ -72,11 +72,11 @@ public class CreateGroupActivity extends Activity {
             String groupCode = generateAccessCode();
             ArrayList<String> members = new ArrayList<>();
             members.add(userId);
-            DatabaseReference groupsRef = myRef.child("Groups");
-            groupsRef.push().setValue(new Group(groupCode, name, size, userId, userId, members));
+            DatabaseReference groupsRef = myRef.child("Groups").child(groupCode);
+            groupsRef.setValue(new Group(groupCode, name, size, userId, userId, members));
 
             Map<String, Object> groupIdUpdate = new HashMap<>();
-            groupIdUpdate.put("groupId", groupsRef.push().getKey());
+            groupIdUpdate.put("groupId", groupCode);
 
             myRef.child("Users").child(userId).updateChildren(groupIdUpdate);
 
