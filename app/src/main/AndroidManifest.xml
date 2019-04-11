@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
         <activity android:name=".GroupInformationActivity"></activity>
+=======
+        <activity android:name=".ProfileActivity"></activity>
+>>>>>>> 11746adddb3a82d31a3c590117b630e163e18d12
         <activity android:name=".CreateGroupActivity" />
         <activity android:name=".JoinGroupActivity" />
         <activity android:name=".CodeGeneratorActivity" />
@@ -25,7 +29,7 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".SignupActivity" />
-        <activity android:name=".listviewActivity" />
+        <activity android:name=".RoomateListActivity" />
         <activity android:name=".ToDoActivity" />
         <activity android:name=".MeetingsActivity" />
         <activity android:name=".AnnouncementActivity" />
