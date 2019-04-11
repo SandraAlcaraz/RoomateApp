@@ -11,8 +11,10 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home5">
+        app:layout_constraintTop_toBottomOf="@+id/home5"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -90,9 +92,22 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="31dp"
         android:clickable="true"
+        android:onClick="createTodo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_input_add" />
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:layout_width="match_parent"
+        android:layout_height="263dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="2dp">
+
+    </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>

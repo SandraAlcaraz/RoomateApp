@@ -7,16 +7,15 @@ import java.text.DateFormat;
 import java.util.Date;
 
 public class Todo implements Parcelable {
-    private String id, description, groupId, assigneeName;
-    private int assignee, createdBy;
+    private String id, description, groupId, assigneeName, createdBy;
     private boolean finished;
     private Date createdAt, dueDate, finishedAt, updatedAt;
 
-    public Todo(String id, String description, String groupId, int assignee, int createdBy, Date createdAt, Date dueDate, String assigneeName){
+    public Todo(String id, String description, String groupId, String createdBy, Date createdAt, Date dueDate, String assigneeName){
         this.id = id;
         this.description = description;
         this.groupId = groupId;
-        this.assignee = assignee;
+
         this.createdBy = createdBy;
         this.finished = false;
         this.createdAt = createdAt;
@@ -24,13 +23,17 @@ public class Todo implements Parcelable {
         this.assigneeName=assigneeName;
     }
 
+
+    public Todo(){
+
+    }
+
     protected Todo(Parcel in) {
         id = in.readString();
         description = in.readString();
         groupId = in.readString();
         assigneeName = in.readString();
-        assignee = in.readInt();
-        createdBy = in.readInt();
+        createdBy = in.readString();
         finished = in.readByte() != 0;
     }
 
@@ -58,11 +61,9 @@ public class Todo implements Parcelable {
         return this.groupId;
     }
 
-    public int getAssignee(){
-        return this.assignee;
-    }
 
-    public int getCreatedBy(){
+
+    public String getCreatedBy(){
         return this.createdBy;
     }
 
@@ -86,9 +87,10 @@ public class Todo implements Parcelable {
         this.description = description;
     }
 
-    public void setAssignee(int assignee){
-        this.assignee = assignee;
+    public void setCreatedBy(String createdBy){
+        this.createdBy = createdBy;
     }
+
 
     public void setFinished(boolean finished){
         this.finished = finished;
@@ -130,8 +132,7 @@ public class Todo implements Parcelable {
         dest.writeString(description);
         dest.writeString(groupId);
         dest.writeString(assigneeName);
-        dest.writeInt(assignee);
-        dest.writeInt(createdBy);
+        dest.writeString(createdBy);
         dest.writeByte((byte) (finished ? 1 : 0));
     }
 }
