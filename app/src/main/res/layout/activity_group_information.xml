@@ -6,16 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".GroupInformationActivity">
 
-    <ListView
-        android:id="@+id/groupInfo_listview"
-        android:layout_width="match_parent"
-        android:layout_height="207dp"
+    <EditText
+        android:id="@+id/changeGroupName_input"
+        android:layout_width="348dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="86dp" />
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="150dp"
+        android:ems="10"
+        android:hint="Type new group name"
+        android:inputType="text" />
 
     <Button
         android:id="@+id/changeName_Button"
@@ -23,38 +25,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginBottom="198dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginTop="200dp"
         android:onClick="changeGroupName"
         android:text="Change" />
 
-    <EditText
-        android:id="@+id/changeGroupName_input"
-        android:layout_width="348dp"
-        android:layout_height="wrap_content"
+    <ListView
+        android:id="@+id/groupInfo_listview"
+        android:layout_width="354dp"
+        android:layout_height="209dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="31dp"
-        android:layout_marginLeft="31dp"
-        android:layout_marginBottom="251dp"
-        android:ems="10"
-        android:hint="Change group name"
-        android:inputType="textPersonName" />
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="340dp" />
 
-    <EditText
-        android:id="@+id/groupCode_textView"
-        android:layout_width="348dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="31dp"
-        android:layout_marginLeft="31dp"
-        android:layout_marginBottom="304dp"
-        android:ems="10"
-        android:hint="Type your group code"
-        android:inputType="textPersonName" />
 </RelativeLayout>
