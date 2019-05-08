@@ -14,7 +14,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="100dp"
         android:ems="10"
         android:hint="Type new group name"
         android:inputType="text" />
@@ -27,7 +27,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginStart="34dp"
         android:layout_marginLeft="34dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="150dp"
         android:onClick="changeGroupName"
         android:text="Change" />
 
@@ -38,8 +38,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="340dp" />
+        android:layout_marginStart="27dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="229dp" />
 
 </RelativeLayout>
