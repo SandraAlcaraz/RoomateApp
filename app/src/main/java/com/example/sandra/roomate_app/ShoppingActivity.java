@@ -1,5 +1,6 @@
 package com.example.sandra.roomate_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -138,5 +140,32 @@ public class ShoppingActivity extends AppCompatActivity {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.add(R.id.relative,  fragment).addToBackStack(null);
         transaction.commit();
+    }
+
+    public void homeButtonS(View v){
+        Intent homeIntent= new Intent(this, MainActivity.class);
+        startActivity(homeIntent);
+    }
+    public void toDoButtonS(View v){
+        Intent toDoIntent= new Intent(this, ToDoActivity.class);
+        startActivity(toDoIntent);
+    }
+    public void meetingsButtonS(View v){
+        Intent meetingsIntent= new Intent(this, MeetingsActivity.class);
+        startActivity(meetingsIntent);
+    }
+    public void announcementButtonS(View v){
+        Intent announcementIntent= new Intent(this, AnnouncementActivity.class);
+        startActivity(announcementIntent);
+    }
+    public void shoppingButtonS(View v){
+        Intent shoppingIntent= new Intent(this, ShoppingActivity.class);
+        startActivity(shoppingIntent);
+        Toast.makeText(this, "You are in Shopping", Toast.LENGTH_SHORT).show();
+    }
+
+    public void userProfileButtonS(View v){
+        Intent userProfileIntent = new Intent(this, UserProfileActivity.class);
+        startActivity(userProfileIntent);
     }
 }
