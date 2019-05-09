@@ -17,7 +17,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -36,14 +35,10 @@ public class ToDoActivity extends AppCompatActivity {
         setTitle("To Do");
         todosListView= (ListView) findViewById(R.id.todoListView);
 
-       Db = FirebaseDatabase.getInstance().getReference().child("Tasks");
+        Db = FirebaseDatabase.getInstance().getReference().child("Tasks");
         Todo todo1= new Todo("id1","lavar","0001","me", Calendar.getInstance().getTime(),Calendar.getInstance().getTime(), "Marua");
 
         Todo todo2= new Todo("id1","planchar","0001","me", Calendar.getInstance().getTime(),Calendar.getInstance().getTime(), "Juan");
-
-
-
-
 
         Db.addValueEventListener(new ValueEventListener() {
             @Override
@@ -66,9 +61,9 @@ public class ToDoActivity extends AppCompatActivity {
                 }
 
                 todosArray= new Todo[notes.size()];
-               for(int i=0;i<notes.size();i++){
-                   todosArray[i]= (Todo) notes.get(i);
-               }
+                for(int i=0;i<notes.size();i++){
+                    todosArray[i]= (Todo) notes.get(i);
+                }
                 adapter= getTodosAdapter(todosArray);
                 adapter.notifyDataSetChanged();
                 todosListView.setAdapter(adapter);
@@ -96,9 +91,9 @@ public class ToDoActivity extends AppCompatActivity {
         String[] from = {"id", "description", "groupId", "assignee"};
         int[] to = {
                 R.id.itemTodoId,
-                R.id.itemTodoDesc,
+                R.id.activityMade_textView,
                 R.id.itemTodoGroupId,
-                R.id.itemTodoAssignee,
+                R.id.elementUpdated_textView,
                // R.id.itemTodoDueDate
         };
         // prepare the list of all records

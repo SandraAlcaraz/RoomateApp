@@ -37,6 +37,7 @@ public class RoomateListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Roommates List");
         setContentView(R.layout.activity_roomatelist);
         listView = (ListView) findViewById(R.id.listView);
 
