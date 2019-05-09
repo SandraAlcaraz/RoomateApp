@@ -77,13 +77,11 @@ public class EditDeleteTodo extends AppCompatActivity {
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 Set<String> set = new HashSet<String>();
-                Iterator i = dataSnapshot.getChildren().iterator();
-
-                while (i.hasNext()) {
-                    set.add(((DataSnapshot)i.next()).getKey());
+                for (DataSnapshot child : dataSnapshot.getChildren()){
+                    set.add(child.child("description").getValue().toString());
                 }
+
                 listOfTodos.clear();
                 listOfTodos.addAll(set);
                 arrayAdapter.notifyDataSetChanged();
