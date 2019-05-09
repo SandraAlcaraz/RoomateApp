@@ -158,4 +158,9 @@ public class AnnouncementActivity extends AppCompatActivity {
         startActivity(userProfileIntent);
     }
 
+    public void editAnnouncement(View v){
+        Intent intent = new Intent(this, EditDeleteAnnouncement.class);
+        startActivity(intent);
+    }
+
 }
