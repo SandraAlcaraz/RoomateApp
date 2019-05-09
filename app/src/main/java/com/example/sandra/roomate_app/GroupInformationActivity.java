@@ -77,9 +77,11 @@ public class GroupInformationActivity extends AppCompatActivity {
 
                                 String name = "Group name: " + groupDataSnapshot.child("name").getValue().toString();
                                 String size = "Group size: " + groupDataSnapshot.child("size").getValue().toString();
+                                String groupCode = "Group code: " + groupDataSnapshot.child("code").getValue().toString();
 
                                 groupData.add(name);
                                 groupData.add(size);
+                                groupData.add(groupCode);
                             }
 
                             ArrayAdapter<String> adapter = new ArrayAdapter<>(

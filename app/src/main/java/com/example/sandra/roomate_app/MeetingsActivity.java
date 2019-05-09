@@ -149,20 +149,26 @@ public class MeetingsActivity extends AppCompatActivity {
         Intent intent = new Intent(this, EditDeleteMeeting.class);
         startActivity(intent);
     }
-    public void meetingsButtonT(View v){
+    public void meetingsButtonM(View v){
         Intent meetingsIntent= new Intent(this, MeetingsActivity.class);
         startActivity(meetingsIntent);
     }
-    public void announcementButtonT(View v){
+
+    public void TodosButtonM(View v){
+        Intent todosIntent= new Intent(this, ToDoActivity.class);
+        startActivity(todosIntent);
+    }
+
+    public void announcementButtonM(View v){
         Intent announcementIntent= new Intent(this, AnnouncementActivity.class);
         startActivity(announcementIntent);
     }
-    public void shoppingButtonT(View v){
+    public void shoppingButtonM(View v){
         Intent shoppingIntent= new Intent(this, ShoppingActivity.class);
         startActivity(shoppingIntent);
     }
 
-    public void homeTodo(View v){
+    public void homeButtonM(View v){
         Intent homeIntent= new Intent(this, MainActivity.class);
         startActivity(homeIntent);
     }
