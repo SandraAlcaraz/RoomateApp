@@ -9,6 +9,40 @@
     tools:context=".MainActivity">
 
 
+    <TextView
+        android:id="@+id/recentActivityLabel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="26dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="358dp"
+        android:text="ANNOUNCEMENTS ACTIVITY" />
+
+    <ListView
+        android:id="@+id/recentAnnouncements_listview"
+        android:layout_width="358dp"
+        android:layout_height="213dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="26dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="382dp" />
+
+    <ListView
+        android:id="@+id/recentShoppingItems_listview"
+        android:layout_width="358dp"
+        android:layout_height="196dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="27dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="142dp" />
+
     <Button
         android:id="@+id/logout_btn"
         android:layout_width="match_parent"
@@ -146,6 +180,6 @@
         android:layout_marginStart="27dp"
         android:layout_marginLeft="27dp"
         android:layout_marginTop="116dp"
-        android:text="RECENT ACTIVITY" />
+        android:text="RECENT SHOPPING ACTIVITY" />
 
 </RelativeLayout>

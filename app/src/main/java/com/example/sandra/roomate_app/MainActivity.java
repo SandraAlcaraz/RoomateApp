@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,16 +22,22 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity implements ShoppingListener, AnnouncementListener {
 
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private DatabaseReference myRef;
+    private DatabaseReference myRef, shoppingRef, announcementRef;
     private String userID;
+    public List shoppingItemsActivity;
 
     private Button logoutBtn, groupInfoButton, listviewBtn;
     private TextView greetingLabel;
+    private ListView recentShoppingListView,
+                     recentAnnouncementsListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
         logoutBtn = findViewById(R.id.logout_btn);
         greetingLabel = findViewById(R.id.greeting_textView);
         groupInfoButton = findViewById(R.id.groupInfo_button);
+
+        recentShoppingListView = findViewById(R.id.recentShoppingItems_listview);
+        recentAnnouncementsListView = findViewById(R.id.recentAnnouncements_listview);
 
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -58,6 +69,97 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
+
+        shoppingRef = mFirebaseDatabase.getReference().child("Shoppinglist");
+
+        shoppingRef.addChildEventListener(new ChildEventListener() {
+            List shoppingItemsActivity = new ArrayList<>();
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String createdBy = dataSnapshot.child("createdBy").getValue().toString();
+                String description = dataSnapshot.child("description").getValue().toString();
+                String value = (createdBy + " added a Shopping Item: " + description);
+
+                shoppingItemsActivity.add(value);
+                onShoppingAdded(shoppingItemsActivity);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String EditedBy = dataSnapshot.child("createdBy").getValue().toString();
+                String description = dataSnapshot.child("description").getValue().toString();
+                String value = (EditedBy + " edited a Shopping Item to " + description);
+
+                shoppingItemsActivity.add(value);
+                onShoppingAdded(shoppingItemsActivity);
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                String description = dataSnapshot.child("description").getValue().toString();
+                String value = ("The "+ description + " shopping item has been deleted.");
+
+                shoppingItemsActivity.add(value);
+                onShoppingAdded(shoppingItemsActivity);
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        announcementRef = mFirebaseDatabase.getReference().child("Announcements");
+
+        announcementRef.addChildEventListener(new ChildEventListener() {
+            List announcementsActivity = new ArrayList<>();
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String createdBy = dataSnapshot.child("createdBy").getValue().toString();
+                String content = dataSnapshot.child("content").getValue().toString();
+                String value = (createdBy + " added an announcement: " + content);
+
+                announcementsActivity.add(value);
+                onAnnouncementAdded(announcementsActivity);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String EditedBy = dataSnapshot.child("createdBy").getValue().toString();
+                String content = dataSnapshot.child("content").getValue().toString();
+                String value = (EditedBy + " edited an announcement to " + content);
+
+                announcementsActivity.add(value);
+                onAnnouncementAdded(announcementsActivity);
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                String content = dataSnapshot.child("content").getValue().toString();
+                String value = ("The "+ content + " announcement has been deleted.");
+
+                announcementsActivity.add(value);
+                onAnnouncementAdded(announcementsActivity);
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
     }
 
     public void sessionLogout(View v){
@@ -74,10 +176,6 @@ public class MainActivity extends AppCompatActivity {
     public void goToRoomatelist(View v) {
         Intent intent = new Intent(this, RoomateListActivity.class);
         startActivity(intent);
-    }
-
-    public void goToCodeGeneration(View v){
-        startActivity(new Intent(this, CodeGeneratorActivity.class));
     }
 
     @Override
@@ -110,4 +208,23 @@ public class MainActivity extends AppCompatActivity {
         startActivity(shoppingIntent);
     }
 
+    @Override
+    public void onShoppingAdded(List shoppingItemsActivity) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                shoppingItemsActivity
+        );
+        recentShoppingListView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onAnnouncementAdded(List announcementsActivity) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                announcementsActivity
+        );
+        recentAnnouncementsListView.setAdapter(adapter);
+    }
 }
