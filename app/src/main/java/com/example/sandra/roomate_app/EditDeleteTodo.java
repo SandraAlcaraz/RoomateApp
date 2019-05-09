@@ -49,10 +49,11 @@ public class EditDeleteTodo extends AppCompatActivity {
         setTitle("Tasks");
 
        // add_room = (Button) findViewById(R.id.button);
-       // room_name = (TextInputEditText) findViewById(R.id.texth);
+       // room_name = (TextInputEditText) findViewById(R.id.text);
         listView = (ListView) findViewById(R.id.dinamicList);
         deleteButton = (FloatingActionButton) findViewById(R.id.floatingDeleteTodo);
         editButton = (FloatingActionButton) findViewById(R.id.floatingEditTodo);
+
 
         arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_single_choice,listOfTodos);
 

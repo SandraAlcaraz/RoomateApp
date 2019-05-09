@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -160,6 +161,17 @@ public class ToDoActivity extends AppCompatActivity {
     public void homeTodo(View v){
         Intent homeIntent= new Intent(this, MainActivity.class);
         startActivity(homeIntent);
+    }
+
+    public void toDoButton(View v){
+        Intent toDoIntent= new Intent(this, ToDoActivity.class);
+        startActivity(toDoIntent);
+        Toast.makeText(this, "You are in TODOS", Toast.LENGTH_SHORT).show();
+    }
+
+    public void userProfileButtonT(View v){
+        Intent userProfileIntent = new Intent(this, UserProfileActivity.class);
+        startActivity(userProfileIntent);
     }
 }
 
