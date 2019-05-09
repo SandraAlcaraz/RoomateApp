@@ -1,5 +1,6 @@
 package com.example.sandra.roomate_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
@@ -144,5 +145,25 @@ public class MeetingsActivity extends AppCompatActivity {
         transaction.add(R.id.relative,  fragment).addToBackStack(null);
         transaction.commit();
     }
+    public void changeMeetings(View v){
+        Intent intent = new Intent(this, EditDeleteMeeting.class);
+        startActivity(intent);
+    }
+    public void meetingsButtonT(View v){
+        Intent meetingsIntent= new Intent(this, MeetingsActivity.class);
+        startActivity(meetingsIntent);
+    }
+    public void announcementButtonT(View v){
+        Intent announcementIntent= new Intent(this, AnnouncementActivity.class);
+        startActivity(announcementIntent);
+    }
+    public void shoppingButtonT(View v){
+        Intent shoppingIntent= new Intent(this, ShoppingActivity.class);
+        startActivity(shoppingIntent);
+    }
 
+    public void homeTodo(View v){
+        Intent homeIntent= new Intent(this, MainActivity.class);
+        startActivity(homeIntent);
+    }
 }

@@ -99,6 +99,20 @@
         app:srcCompat="@mipmap/shopping_cart" />
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="88dp"
+        android:layout_marginRight="88dp"
+        android:layout_marginBottom="28dp"
+        android:clickable="true"
+        android:onClick="changeMeetings"
+        app:backgroundTint="@color/btn_logut_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

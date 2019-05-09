@@ -33,7 +33,9 @@
         <activity android:name=".AnnouncementActivity" />
         <activity android:name=".ShoppingActivity" />
         <activity android:name=".EditDeleteTodo" />
-        <activity android:name=".editTodosActivity"></activity>
+        <activity android:name=".EditDeleteMeeting" />
+        <activity android:name=".editTodosActivity" />
+        <activity android:name=".editMeetingsActivity"></activity>
     </application>
 
 </manifest>
