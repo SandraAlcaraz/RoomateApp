@@ -4,15 +4,11 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -23,13 +19,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 
-public class EditDeleteTodo extends AppCompatActivity {
+public class EditDeleteShopList extends AppCompatActivity {
     private FloatingActionButton deleteButton, editButton;
 
     private ListView listView;
@@ -38,29 +32,22 @@ public class EditDeleteTodo extends AppCompatActivity {
     private String name;
     private Boolean itemSelected = false;
     private int selectedPosition = 0;
-    private DatabaseReference root = FirebaseDatabase.getInstance().getReference().child("Tasks");
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference().child("Shoppinglist");
     private TextInputEditText room_name;
     private DatabaseReference Db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_delete_todo);
-        setTitle("Tasks");
-
-       // add_room = (Button) findViewById(R.id.button);
-       // room_name = (TextInputEditText) findViewById(R.id.texth);
+        setContentView(R.layout.activity_edit_delete_shop_list);
         listView = (ListView) findViewById(R.id.dinamicList);
-        deleteButton = (FloatingActionButton) findViewById(R.id.floatingDeleteTodo);
-        editButton = (FloatingActionButton) findViewById(R.id.floatingEditTodo);
+        deleteButton = (FloatingActionButton) findViewById(R.id.floatingDeleteShop);
+        editButton = (FloatingActionButton) findViewById(R.id.floatingEditShop);
 
         arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_single_choice,listOfTodos);
 
         listView.setAdapter(arrayAdapter);
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-
-
-
         listView.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent,
@@ -71,8 +58,6 @@ public class EditDeleteTodo extends AppCompatActivity {
                         editButton.setEnabled(true);
                     }
                 });
-
-
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -93,8 +78,6 @@ public class EditDeleteTodo extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     public void deleteItem(View view) {
@@ -103,13 +86,13 @@ public class EditDeleteTodo extends AppCompatActivity {
 
     }
 
-    public void changeItem1(View view){
+    public void changeItem2(View view){
         try {
             listView.setItemChecked(selectedPosition, false);
             final String id= listOfTodos.get(selectedPosition);
 
 
-            Db = FirebaseDatabase.getInstance().getReference().child("Tasks/"+id);
+            Db = FirebaseDatabase.getInstance().getReference().child("Shoppinglist/"+id);
 
             Db.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -118,18 +101,17 @@ public class EditDeleteTodo extends AppCompatActivity {
                     String createdBy=  dataSnapshot.child("createdBy").getValue().toString();
                     Boolean finished= Boolean.valueOf(dataSnapshot.child("finished").toString());
                     String description= dataSnapshot.child("description").getValue().toString();
-                    Todo newTodo= new Todo();
-                    newTodo.setFinished(finished);
-                    newTodo.setCreatedBy(createdBy);
-                    newTodo.setAssigneeName(assigneeName);
-                    newTodo.setDescription(description);
 
 
-                    //Bundle bundle = new Bundle();
-                    //bundle.putSerializable("dataTodo", newTodo);
-                    //DashboardTodo fragment = new DashboardTodo();
-                    Intent intent = new Intent(EditDeleteTodo.this, editTodosActivity.class);
-                    intent.putExtra("dataTodo", (Serializable) newTodo);
+                    Shopping shop= new Shopping();
+                    shop.setFinished(finished);
+                    shop.setCreatedBy(createdBy);
+                    shop.setAssigneeName(assigneeName);
+                    shop.setDescription(description);
+
+
+                    Intent intent = new Intent(EditDeleteShopList.this, EditShopingList.class);
+                    intent.putExtra("dataTodo", (Serializable) shop);
                     intent.putExtra("todoId",id);
                     startActivity(intent);
                 }
@@ -143,5 +125,4 @@ public class EditDeleteTodo extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 }

@@ -1,5 +1,6 @@
 package com.example.sandra.roomate_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
@@ -138,5 +139,9 @@ public class ShoppingActivity extends AppCompatActivity {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.add(R.id.relative,  fragment).addToBackStack(null);
         transaction.commit();
+    }
+    public void changeShop(View v){
+        Intent intent = new Intent(this, EditDeleteShopList.class);
+        startActivity(intent);
     }
 }
