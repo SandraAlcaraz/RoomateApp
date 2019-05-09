@@ -168,4 +168,9 @@ public class ShoppingActivity extends AppCompatActivity {
         Intent userProfileIntent = new Intent(this, UserProfileActivity.class);
         startActivity(userProfileIntent);
     }
+
+    public void changeShop(View v){
+        Intent intent = new Intent(this, EditDeleteShopList.class);
+        startActivity(intent);
+    }
 }
