@@ -32,9 +32,7 @@ public class MainActivity extends AppCompatActivity implements ShoppingListener,
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef, shoppingRef, announcementRef;
     private String userID;
-    public List shoppingItemsActivity;
 
-    private Button logoutBtn, groupInfoButton, listviewBtn;
     private TextView greetingLabel;
     private ListView recentShoppingListView,
                      recentAnnouncementsListView;
@@ -44,9 +42,7 @@ public class MainActivity extends AppCompatActivity implements ShoppingListener,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Home");
-        logoutBtn = findViewById(R.id.logout_btn);
         greetingLabel = findViewById(R.id.greeting_textView);
-        groupInfoButton = findViewById(R.id.groupInfo_button);
 
         recentShoppingListView = findViewById(R.id.recentShoppingItems_listview);
         recentAnnouncementsListView = findViewById(R.id.recentAnnouncements_listview);
@@ -162,22 +158,6 @@ public class MainActivity extends AppCompatActivity implements ShoppingListener,
 
     }
 
-    public void sessionLogout(View v){
-        FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-    }
-
-
-    public void showGroupInfo(View v) {
-        startActivity(new Intent(this, GroupInformationActivity.class));
-    }
-
-    public void goToRoomatelist(View v) {
-        Intent intent = new Intent(this, RoomateListActivity.class);
-        startActivity(intent);
-    }
-
     @Override
     public void onBackPressed() {
         Intent setIntent = new Intent(Intent.ACTION_MAIN);
@@ -206,6 +186,11 @@ public class MainActivity extends AppCompatActivity implements ShoppingListener,
     public void shoppingButton(View v){
         Intent shoppingIntent= new Intent(this, ShoppingActivity.class);
         startActivity(shoppingIntent);
+    }
+
+    public void userProfileButton(View v){
+        Intent userProfileIntent = new Intent(this, UserProfileActivity.class);
+        startActivity(userProfileIntent);
     }
 
     @Override
