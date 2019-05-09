@@ -54,14 +54,14 @@ public class ToDoActivity extends AppCompatActivity {
 
                     String desAr=noteDataSnapshot.child("description").getValue().toString();
                     String assigAr=noteDataSnapshot.child("assigneeName").getValue().toString();
-                    String createdAr=noteDataSnapshot.child("createdBy").getValue().toString();
+                    String createdBy=noteDataSnapshot.child("createdBy").getValue().toString();
                     Boolean finished= Boolean.valueOf(noteDataSnapshot.child("finished").getValue().toString());
 
                     //Todo todoItem = noteDataSnapshot.getValue(Todo.class);
                     Todo todoItem= new Todo();
                     todoItem.setDescription(desAr);
                     todoItem.setAssigneeName(assigAr);
-                    todoItem.setCreatedBy(createdAr);
+                    todoItem.setCreatedBy(createdBy);
                     todoItem.setFinished(finished);
                     notes.add(todoItem);
                 }
@@ -148,6 +148,23 @@ public class ToDoActivity extends AppCompatActivity {
     public void changeTodos(View v){
         Intent intent = new Intent(this, EditDeleteTodo.class);
         startActivity(intent);
+    }
+    public void meetingsButtonT(View v){
+        Intent meetingsIntent= new Intent(this, MeetingsActivity.class);
+        startActivity(meetingsIntent);
+    }
+    public void announcementButtonT(View v){
+        Intent announcementIntent= new Intent(this, AnnouncementActivity.class);
+        startActivity(announcementIntent);
+    }
+    public void shoppingButtonT(View v){
+        Intent shoppingIntent= new Intent(this, ShoppingActivity.class);
+        startActivity(shoppingIntent);
+    }
+
+    public void homeTodo(View v){
+        Intent homeIntent= new Intent(this, MainActivity.class);
+        startActivity(homeIntent);
     }
 }
 

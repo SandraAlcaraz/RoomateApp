@@ -39,6 +39,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:background="@color/white"
+        android:onClick="homeTodo"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@mipmap/home" />
 
@@ -61,6 +62,7 @@
         android:layout_alignParentRight="true"
         android:background="@color/white"
 
+        android:onClick="meetingsButtonT"
         app:layout_constraintStart_toEndOf="@+id/toDo5"
         app:srcCompat="@mipmap/people" />
 
@@ -72,6 +74,7 @@
         android:layout_alignParentRight="true"
         android:background="@color/white"
 
+        android:onClick="announcementButtonT"
         app:layout_constraintStart_toEndOf="@+id/meetings5"
         app:srcCompat="@mipmap/announcement" />
 
@@ -83,6 +86,7 @@
         android:layout_alignParentRight="true"
         android:background="@color/white"
 
+        android:onClick="shoppingButtonT"
         app:layout_constraintStart_toEndOf="@+id/announcement5"
         app:srcCompat="@mipmap/shopping_cart" />
 
@@ -120,8 +124,8 @@
         android:layout_height="263dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="2dp">
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="0dp">
 
     </RelativeLayout>
 

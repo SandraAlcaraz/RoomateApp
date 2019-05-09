@@ -86,7 +86,6 @@ public class EditDeleteTodo extends AppCompatActivity {
                 }
                 listOfTodos.clear();
                 listOfTodos.addAll(set);
-
                 arrayAdapter.notifyDataSetChanged();
             }
 
@@ -108,28 +107,39 @@ public class EditDeleteTodo extends AppCompatActivity {
     public void changeItem1(View view){
         try {
             listView.setItemChecked(selectedPosition, false);
-            Db = FirebaseDatabase.getInstance().getReference().child("Tasks");
-            String id= listOfTodos.get(selectedPosition);
-            String assigneeName= Db.child(id).child("assigneeName").toString();
-            String createdBy=  Db.child(id).child("createdBy").toString();
-            Boolean finished= Boolean.valueOf(Db.child(id).child("finished").toString());
-            Todo newTodo= new Todo();
-            newTodo.setFinished(finished);
-            newTodo.setCreatedBy(createdBy);
-            newTodo.setAssigneeName(assigneeName);
-
-            //quitar
-            newTodo.setDescription("Sandra Descrip");
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("dataTodo", newTodo);
-            Log.wtf("EditDeleteTodo", newTodo.getDescription());
-            Log.wtf("EditDeleteTodo", newTodo.getAssigneeName());
-            DashboardTodo fragment = new DashboardTodo();
-            Intent intent = new Intent(this, editTodosActivity.class);
-            intent.putExtra("dataTodo", (Serializable) newTodo);
-            startActivity(intent);
+            final String id= listOfTodos.get(selectedPosition);
 
 
+            Db = FirebaseDatabase.getInstance().getReference().child("Tasks/"+id);
+
+            Db.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String assigneeName= dataSnapshot.child("assigneeName").getValue().toString();
+                    String createdBy=  dataSnapshot.child("createdBy").getValue().toString();
+                    Boolean finished= Boolean.valueOf(dataSnapshot.child("finished").toString());
+                    String description= dataSnapshot.child("description").getValue().toString();
+                    Todo newTodo= new Todo();
+                    newTodo.setFinished(finished);
+                    newTodo.setCreatedBy(createdBy);
+                    newTodo.setAssigneeName(assigneeName);
+                    newTodo.setDescription(description);
+
+
+                    //Bundle bundle = new Bundle();
+                    //bundle.putSerializable("dataTodo", newTodo);
+                    //DashboardTodo fragment = new DashboardTodo();
+                    Intent intent = new Intent(EditDeleteTodo.this, editTodosActivity.class);
+                    intent.putExtra("dataTodo", (Serializable) newTodo);
+                    intent.putExtra("todoId",id);
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
