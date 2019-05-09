@@ -28,6 +28,7 @@ public class ShoppingActivity extends AppCompatActivity {
     private ListView shoppingsListView;
     Shopping [] shoppingsArray;
     SimpleAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,26 +41,21 @@ public class ShoppingActivity extends AppCompatActivity {
 
         Todo todo2= new Todo("id1","planchar","0001","me", Calendar.getInstance().getTime(),Calendar.getInstance().getTime(), "Juan");
 
-
-
-
-
         Db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List notes = new ArrayList<>();
                 for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
-
-                    String desAr=noteDataSnapshot.child("description").getValue().toString();
-                    String assigAr=noteDataSnapshot.child("assigneeName").getValue().toString();
-                    String createdAr=noteDataSnapshot.child("createdBy").getValue().toString();
-                    Boolean finished= Boolean.valueOf(noteDataSnapshot.child("finished").getValue().toString());
+                    String createdBy = noteDataSnapshot.child("createdBy").getValue().toString();
+                    String desAr = noteDataSnapshot.child("description").getValue().toString();
+                    String assigAr = noteDataSnapshot.child("assigneeName").getValue().toString();
+                    Boolean finished = Boolean.valueOf(noteDataSnapshot.child("finished").getValue().toString());
 
                     //Todo todoItem = noteDataSnapshot.getValue(Todo.class);
-                    Shopping todoItem= new Shopping();
+                    Shopping todoItem = new Shopping();
                     todoItem.setDescription(desAr);
                     todoItem.setAssigneeName(assigAr);
-                    todoItem.setCreatedBy(createdAr);
+                    todoItem.setCreatedBy(createdBy);
                     todoItem.setFinished(finished);
                     notes.add(todoItem);
                 }
@@ -95,9 +91,9 @@ public class ShoppingActivity extends AppCompatActivity {
         String[] from = {"id", "description", "groupId", "assignee"};
         int[] to = {
                 R.id.itemShoppingId,
-                R.id.itemShoppingDesc,
+                R.id.itemAnnouncementContent,
                 R.id.itemShoppingGroupId,
-                R.id.itemShoppingAssignee,
+                R.id.itemAnnouncementCreatedBy,
                 // R.id.itemTodoDueDate
         };
         // prepare the list of all records

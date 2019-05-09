@@ -39,7 +39,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/itemTodoDesc"
+                android:id="@+id/activityMade_textView"
                 android:layout_width="228dp"
                 android:layout_height="21dp"
                 android:layout_marginStart="8dp"
@@ -54,14 +54,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/itemTodoAssignee"
+                android:id="@+id/elementUpdated_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="TextView"
-                app:layout_constraintEnd_toEndOf="@+id/itemTodoDesc"
-                app:layout_constraintStart_toStartOf="@+id/itemTodoDesc"
-                app:layout_constraintTop_toBottomOf="@+id/itemTodoDesc" />
+                app:layout_constraintEnd_toEndOf="@+id/activityMade_textView"
+                app:layout_constraintStart_toStartOf="@+id/activityMade_textView"
+                app:layout_constraintTop_toBottomOf="@+id/activityMade_textView" />
 
             <TextView
                 android:id="@+id/itemTodoDueDate"
@@ -72,9 +72,9 @@
                 android:text="TextView"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/itemTodoAssignee"
-                app:layout_constraintStart_toStartOf="@+id/itemTodoAssignee"
-                app:layout_constraintTop_toBottomOf="@+id/itemTodoAssignee" />
+                app:layout_constraintEnd_toEndOf="@+id/elementUpdated_textView"
+                app:layout_constraintStart_toStartOf="@+id/elementUpdated_textView"
+                app:layout_constraintTop_toBottomOf="@+id/elementUpdated_textView" />
 
             <TextView
                 android:id="@+id/itemTodoId"
@@ -110,8 +110,8 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginLeft="12dp"
                 android:text="Edit"
-                app:layout_constraintStart_toEndOf="@+id/itemTodoDesc"
-                app:layout_constraintTop_toTopOf="@+id/itemTodoDesc" />
+                app:layout_constraintStart_toEndOf="@+id/activityMade_textView"
+                app:layout_constraintTop_toTopOf="@+id/activityMade_textView" />
 
             <Button
                 android:id="@+id/button7"

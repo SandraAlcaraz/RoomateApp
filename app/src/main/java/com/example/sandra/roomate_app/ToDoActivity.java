@@ -1,5 +1,6 @@
 package com.example.sandra.roomate_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
@@ -17,7 +18,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -36,14 +36,10 @@ public class ToDoActivity extends AppCompatActivity {
         setTitle("To Do");
         todosListView= (ListView) findViewById(R.id.todoListView);
 
-       Db = FirebaseDatabase.getInstance().getReference().child("Tasks");
+        Db = FirebaseDatabase.getInstance().getReference().child("Tasks");
         Todo todo1= new Todo("id1","lavar","0001","me", Calendar.getInstance().getTime(),Calendar.getInstance().getTime(), "Marua");
 
         Todo todo2= new Todo("id1","planchar","0001","me", Calendar.getInstance().getTime(),Calendar.getInstance().getTime(), "Juan");
-
-
-
-
 
         Db.addValueEventListener(new ValueEventListener() {
             @Override
@@ -53,22 +49,22 @@ public class ToDoActivity extends AppCompatActivity {
 
                     String desAr=noteDataSnapshot.child("description").getValue().toString();
                     String assigAr=noteDataSnapshot.child("assigneeName").getValue().toString();
-                    String createdAr=noteDataSnapshot.child("createdBy").getValue().toString();
+                    String createdBy=noteDataSnapshot.child("createdBy").getValue().toString();
                     Boolean finished= Boolean.valueOf(noteDataSnapshot.child("finished").getValue().toString());
 
                     //Todo todoItem = noteDataSnapshot.getValue(Todo.class);
                     Todo todoItem= new Todo();
                     todoItem.setDescription(desAr);
                     todoItem.setAssigneeName(assigAr);
-                    todoItem.setCreatedBy(createdAr);
+                    todoItem.setCreatedBy(createdBy);
                     todoItem.setFinished(finished);
                     notes.add(todoItem);
                 }
 
                 todosArray= new Todo[notes.size()];
-               for(int i=0;i<notes.size();i++){
-                   todosArray[i]= (Todo) notes.get(i);
-               }
+                for(int i=0;i<notes.size();i++){
+                    todosArray[i]= (Todo) notes.get(i);
+                }
                 adapter= getTodosAdapter(todosArray);
                 adapter.notifyDataSetChanged();
                 todosListView.setAdapter(adapter);
@@ -96,9 +92,9 @@ public class ToDoActivity extends AppCompatActivity {
         String[] from = {"id", "description", "groupId", "assignee"};
         int[] to = {
                 R.id.itemTodoId,
-                R.id.itemTodoDesc,
+                R.id.activityMade_textView,
                 R.id.itemTodoGroupId,
-                R.id.itemTodoAssignee,
+                R.id.elementUpdated_textView,
                // R.id.itemTodoDueDate
         };
         // prepare the list of all records
@@ -143,6 +139,27 @@ public class ToDoActivity extends AppCompatActivity {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.add(R.id.relative,  fragment).addToBackStack(null);
         transaction.commit();
+    }
+    public void changeTodos(View v){
+        Intent intent = new Intent(this, EditDeleteTodo.class);
+        startActivity(intent);
+    }
+    public void meetingsButtonT(View v){
+        Intent meetingsIntent= new Intent(this, MeetingsActivity.class);
+        startActivity(meetingsIntent);
+    }
+    public void announcementButtonT(View v){
+        Intent announcementIntent= new Intent(this, AnnouncementActivity.class);
+        startActivity(announcementIntent);
+    }
+    public void shoppingButtonT(View v){
+        Intent shoppingIntent= new Intent(this, ShoppingActivity.class);
+        startActivity(shoppingIntent);
+    }
+
+    public void homeTodo(View v){
+        Intent homeIntent= new Intent(this, MainActivity.class);
+        startActivity(homeIntent);
     }
 }
 

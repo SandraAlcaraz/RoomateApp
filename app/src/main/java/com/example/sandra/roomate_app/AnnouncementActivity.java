@@ -1,18 +1,15 @@
 package com.example.sandra.roomate_app;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AlertDialog;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.ViewGroup;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,113 +17,116 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.List;
 
 public class AnnouncementActivity extends AppCompatActivity {
 
-    private Button add_room, deleteButton, changeButton;
-    private TextInputEditText room_name;
-
-    private ListView listView;
-    private ArrayAdapter<String> arrayAdapter;
-    private ArrayList<String> list_of_rooms = new ArrayList<>();
-    private String name;
-    private Boolean itemSelected = false;
-    private int selectedPosition = 0;
-    private DatabaseReference root = FirebaseDatabase.getInstance().getReference().child("Announcements");
+    private DatabaseReference Db;
+    private ListView announcementsListView;
+    Announcement [] announcementsArray;
+    SimpleAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_announcement);
-        setTitle("Announcement");
+        setTitle("Announcements");
+        announcementsListView = (ListView) findViewById(R.id.announcementsListView);
 
-        add_room = (Button) findViewById(R.id.button);
-        room_name = (TextInputEditText) findViewById(R.id.texth);
-        listView = (ListView) findViewById(R.id.list);
-        deleteButton = (Button) findViewById(R.id.button4);
-        changeButton = (Button) findViewById(R.id.button5);
-        deleteButton.setEnabled(false);
-        changeButton.setEnabled(false);
+        Db = FirebaseDatabase.getInstance().getReference().child("Announcements");
 
-        arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_single_choice,list_of_rooms);
-
-        listView.setAdapter(arrayAdapter);
-        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-
-
-        add_room.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Map<String, Object> map = new HashMap<String, Object>();
-                map.put(room_name.getText().toString(),"");
-                root.updateChildren(map);
-            }
-        });
-
-
-        listView.setOnItemClickListener(
-                new AdapterView.OnItemClickListener() {
-                    public void onItemClick(AdapterView<?> parent,
-                                            View view, int position, long id) {
-                        selectedPosition = position;
-                        itemSelected = true;
-                        deleteButton.setEnabled(true);
-                        changeButton.setEnabled(true);
-                    }
-                });
-
-
-        root.addValueEventListener(new ValueEventListener() {
+        Db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List notes = new ArrayList<>();
+                for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
+                    String createdBy = noteDataSnapshot.child("createdBy").getValue().toString();
+                    String content = noteDataSnapshot.child("content").getValue().toString();
 
-                Set<String> set = new HashSet<String>();
-                Iterator i = dataSnapshot.getChildren().iterator();
-
-                while (i.hasNext()) {
-                    set.add(((DataSnapshot)i.next()).getKey());
+                    //Todo todoItem = noteDataSnapshot.getValue(Todo.class);
+                    Announcement todoItem = new Announcement();
+                    todoItem.setContent(content);
+                    todoItem.setCreatedBy(createdBy);
+                    notes.add(todoItem);
                 }
-                list_of_rooms.clear();
-                list_of_rooms.addAll(set);
 
-                arrayAdapter.notifyDataSetChanged();
+                announcementsArray = new Announcement[notes.size()];
+                for(int i=0;i<notes.size();i++){
+                    announcementsArray[i]= (Announcement) notes.get(i);
+                }
+                adapter= getAnnouncementsAdapter(announcementsArray);
+                adapter.notifyDataSetChanged();
+                announcementsListView.setAdapter(adapter);
+                setListViewHeightBasedOnChildren(announcementsListView);
+
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
+
+
         });
-
-
     }
 
-    public void deleteItem(View view) {
-        listView.setItemChecked(selectedPosition, false);
-        root.child(list_of_rooms.get(selectedPosition)).removeValue();
-        deleteButton.setEnabled(false);
-        changeButton.setEnabled(false);
-    }
 
-    public void changeItem(View view){
-        try {
-            listView.setItemChecked(selectedPosition, false);
-            root.child(list_of_rooms.get(selectedPosition)).removeValue();
-            Map<String, Object> map = new HashMap<String, Object>();
-            map.put(room_name.getText().toString(),"");
-            root.updateChildren(map);
-            changeButton.setEnabled(false);
-            deleteButton.setEnabled(false);
-        } catch (Exception e) {
-            e.printStackTrace();
+
+
+    private SimpleAdapter getAnnouncementsAdapter(Announcement[] announcements){
+        // create the item mapping
+
+        SimpleDateFormat simpleDateFormat= new SimpleDateFormat("E, d  M");
+        String[] from = {"content", "createdBy"};
+        int[] to = {
+                R.id.itemAnnouncementContent,
+                R.id.itemAnnouncementCreatedBy,
+                // R.id.itemTodoDueDate
+        };
+        // prepare the list of all records
+        List<HashMap<String, String>> fillMaps = new ArrayList<>();
+        for(Announcement announcement : announcements){
+            HashMap<String, String> map = new HashMap<>();
+            map.put("content", announcement.getContent());
+            map.put("createdBy",  announcement.getCreatedBy());
+//          map.put("dueDate", simpleDateFormat.format(shopping.getDueDate()));
+            fillMaps.add(map);
         }
+        return new SimpleAdapter(this,fillMaps,R.layout.item_announcement,from,to);
     }
 
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null)
+            return;
+
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+        int totalHeight = 0;
+        View view = null;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            view = listAdapter.getView(i, view, listView);
+            if (i == 0)
+                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += view.getMeasuredHeight();
+        }
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+    }
+
+    public void createAnnouncements(View v){
+        Db = FirebaseDatabase.getInstance().getReference().child("Announcements");
+        DashboardAnnouncement fragment = new DashboardAnnouncement();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.add(R.id.relative,  fragment).addToBackStack(null);
+        transaction.commit();
+    }
 
 }

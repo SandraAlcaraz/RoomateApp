@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-public class DashboardShopping extends DialogFragment {
+public class DashboardShopping extends DialogFragment implements NameListener{
     private final static String ITEM = "item";
     private DatabaseReference Db;
     Shopping shopping;
@@ -38,9 +38,9 @@ public class DashboardShopping extends DialogFragment {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private DatabaseReference myRef;
+    private DatabaseReference myRef, userRef;
     private FirebaseDatabase mFirebaseDatabase;
-    private String userId;
+    private String userId, userName;
 
     public static DashboardShopping newInstance(Shopping dashboardItem) {
         Bundle args = new Bundle();
@@ -63,17 +63,19 @@ public class DashboardShopping extends DialogFragment {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         userId = user.getUid();
-        myRef = mFirebaseDatabase.getReference().child("Users/" + userId);
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        userRef = FirebaseDatabase.getInstance().getReference("Users/" + userId);
+
+        userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String userName = (String) dataSnapshot.child("name").getValue();
-                name = userName;
+                String userName = dataSnapshot.child("name").getValue().toString();
+                onNameRetrieved(userName);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getCode());
+
             }
         });
 
@@ -85,10 +87,10 @@ public class DashboardShopping extends DialogFragment {
         Db = FirebaseDatabase.getInstance().getReference().child("Shoppinglist");
         Shopping newTod= new Shopping();
         newTod.setDescription(description.getText().toString());
-        newTod.setAssigneeName(name);
-//        newTod.setDueDate((Date) dueDate.getText());
+        newTod.setAssigneeName(userName);
+        //newTod.setDueDate((Date) dueDate.getText());
 
-        newTod.setCreatedBy(userId);
+        newTod.setCreatedBy(userName);
         newTod.setFinished(done.isChecked());
         Db.push().setValue(newTod);
 
@@ -153,5 +155,10 @@ public class DashboardShopping extends DialogFragment {
                         }
                 )*/
                 .create();
+    }
+
+    @Override
+    public void onNameRetrieved(String userName) {
+        this.userName = userName;
     }
 }
