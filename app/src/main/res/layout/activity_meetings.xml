@@ -1,15 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView2"
+    <ScrollView
+        android:id="@+id/scrollView61"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home5"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/meetingListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"
+                android:dividerHeight="0dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/home5"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="33dp"
+        android:layout_marginLeft="33dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/home" />
+
+    <ImageButton
+        android:id="@+id/toDo5"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="97dp"
+        android:layout_marginLeft="97dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/check_circle" />
+
+    <ImageButton
+        android:id="@+id/meetings5"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="166dp"
+
+        android:layout_marginLeft="166dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/people" />
+
+    <ImageButton
+        android:id="@+id/announcement5"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+
+        android:layout_marginStart="237dp"
+        android:layout_marginLeft="237dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/announcement" />
+
+    <ImageButton
+        android:id="@+id/shopping5"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+
+        android:layout_marginStart="308dp"
+        android:layout_marginLeft="308dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/shopping_cart" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton20"
         android:layout_width="wrap_content"
-        android:layout_height="13dp"
-        android:text="MEETINGS"
-        tools:layout_editor_absoluteX="139dp"
-        tools:layout_editor_absoluteY="63dp" />
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="30dp"
+        android:clickable="true"
+        android:onClick="createMeetings"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true">
+
+    </RelativeLayout>
+
+
 </android.support.constraint.ConstraintLayout>
