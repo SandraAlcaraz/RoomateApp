@@ -33,7 +33,7 @@ public class DashboardShopping extends DialogFragment implements NameListener{
     EditText Spinner;
     EditText dueDate;
     CheckBox done;
-    Button saveButton;
+    Button saveButton, cancelButton;
     String name;
 
     private FirebaseAuth mAuth;
@@ -81,7 +81,9 @@ public class DashboardShopping extends DialogFragment implements NameListener{
 
     }
 
-
+    public void cancelO(){
+        getActivity().onBackPressed();
+    }
 
     public void saveText(){
         Db = FirebaseDatabase.getInstance().getReference().child("Shoppinglist");
@@ -93,6 +95,7 @@ public class DashboardShopping extends DialogFragment implements NameListener{
         newTod.setCreatedBy(userName);
         newTod.setFinished(done.isChecked());
         Db.push().setValue(newTod);
+        getActivity().onBackPressed();
 
     }
 
@@ -118,6 +121,14 @@ public class DashboardShopping extends DialogFragment implements NameListener{
             @Override
             public void onClick(View v) {
                 saveText();
+            }
+        });
+        cancelButton = v.findViewById(R.id.cancelButton20);
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelO();
             }
         });
         return v;
