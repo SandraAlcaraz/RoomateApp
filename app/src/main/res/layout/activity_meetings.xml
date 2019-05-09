@@ -133,6 +133,10 @@
         android:layout_alignParentBottom="true">
 
     </RelativeLayout>
-
-
+        android:layout_height="13dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="MEETINGS"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="103dp" />
 </android.support.constraint.ConstraintLayout>

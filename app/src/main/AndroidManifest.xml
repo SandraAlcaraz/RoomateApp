@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UserProfileActivity"></activity>
+        <activity android:name=".EditAnnouncementActivity"></activity>
+        <activity android:name=".EditDeleteAnnouncement" />
+        <activity android:name=".UserProfileActivity" />
         <activity android:name=".GroupInformationActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".CreateGroupActivity" />
@@ -36,6 +38,8 @@
         <activity android:name=".EditDeleteMeeting" />
         <activity android:name=".editTodosActivity" />
         <activity android:name=".editMeetingsActivity"></activity>
+        <activity android:name=".EditDeleteShopList" />
+        <activity android:name=".EditShopingList"></activity>
     </application>
 
 </manifest>

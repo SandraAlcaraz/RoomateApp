@@ -6,10 +6,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="108dp"
+        android:layout_marginRight="108dp"
+        android:layout_marginBottom="28dp"
+        android:clickable="true"
+        android:onClick="editAnnouncement"
+        app:backgroundTint="@color/btn_logut_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+
+    <ImageButton
+        android:id="@+id/profileButton2"
+        android:layout_width="40dp"
+        android:layout_height="49dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/white"
+        android:onClick="userProfileButtonA"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@mipmap/profile"
+        tools:layout_editor_absoluteY="0dp" />
+
     <ScrollView
         android:id="@+id/scrollView60"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="418dp"
+        android:layout_height="576dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -20,7 +50,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <ListView
                 android:id="@+id/announcementsListView"
@@ -37,11 +67,13 @@
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:background="@color/white"
+        android:onClick="homeButtonA"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@mipmap/home" />
+        app:srcCompat="@mipmap/home"
+        tools:layout_editor_absoluteY="0dp" />
 
     <ImageButton
         android:id="@+id/toDo5"
@@ -49,10 +81,14 @@
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:background="@color/white"
+        android:layout_marginStart="12dp"
 
+        android:layout_marginLeft="12dp"
+        android:background="@color/white"
+        android:onClick="toDoButtonA"
         app:layout_constraintStart_toEndOf="@+id/home5"
-        app:srcCompat="@mipmap/check_circle" />
+        app:srcCompat="@mipmap/check_circle"
+        tools:layout_editor_absoluteY="0dp" />
 
     <ImageButton
         android:id="@+id/meetings5"
@@ -60,10 +96,14 @@
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:background="@color/white"
+        android:layout_marginStart="12dp"
 
+        android:layout_marginLeft="12dp"
+        android:background="@color/white"
+        android:onClick="meetingsButtonA"
         app:layout_constraintStart_toEndOf="@+id/toDo5"
-        app:srcCompat="@mipmap/people" />
+        app:srcCompat="@mipmap/people"
+        tools:layout_editor_absoluteY="0dp" />
 
     <ImageButton
         android:id="@+id/announcement5"
@@ -71,10 +111,15 @@
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:background="@color/white"
+        android:layout_marginStart="16dp"
 
+        android:layout_marginLeft="16dp"
+        android:background="@color/white"
+        android:onClick="announcementButtonA"
+        android:tint="@color/colorPrimary"
         app:layout_constraintStart_toEndOf="@+id/meetings5"
-        app:srcCompat="@mipmap/announcement" />
+        app:srcCompat="@mipmap/announcement"
+        tools:layout_editor_absoluteY="0dp" />
 
     <ImageButton
         android:id="@+id/shopping5"
@@ -82,10 +127,14 @@
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:background="@color/white"
+        android:layout_marginStart="16dp"
 
+        android:layout_marginLeft="16dp"
+        android:background="@color/white"
+        android:onClick="shoppingButtonA"
         app:layout_constraintStart_toEndOf="@+id/announcement5"
-        app:srcCompat="@mipmap/shopping_cart" />
+        app:srcCompat="@mipmap/shopping_cart"
+        tools:layout_editor_absoluteY="0dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton10"
@@ -106,8 +155,9 @@
         android:layout_height="263dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="2dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="50dp">
 
     </RelativeLayout>
 
