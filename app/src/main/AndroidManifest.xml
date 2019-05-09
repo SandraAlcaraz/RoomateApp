@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GroupInformationActivity"></activity>
-        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".GroupInformationActivity" />
+        <activity android:name=".ProfileActivity" />
         <activity android:name=".CreateGroupActivity" />
         <activity android:name=".JoinGroupActivity" />
         <activity android:name=".CodeGeneratorActivity" />
@@ -31,6 +31,8 @@
         <activity android:name=".MeetingsActivity" />
         <activity android:name=".AnnouncementActivity" />
         <activity android:name=".ShoppingActivity" />
+        <activity android:name=".EditDeleteTodo" />
+        <activity android:name=".editTodosActivity"></activity>
     </application>
 
 </manifest>

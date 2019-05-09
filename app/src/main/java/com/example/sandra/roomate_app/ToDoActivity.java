@@ -1,5 +1,6 @@
 package com.example.sandra.roomate_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
@@ -143,6 +144,10 @@ public class ToDoActivity extends AppCompatActivity {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.add(R.id.relative,  fragment).addToBackStack(null);
         transaction.commit();
+    }
+    public void changeTodos(View v){
+        Intent intent = new Intent(this, EditDeleteTodo.class);
+        startActivity(intent);
     }
 }
 

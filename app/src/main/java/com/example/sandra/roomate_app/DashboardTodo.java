@@ -7,6 +7,7 @@ import android.os.Parcel;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class DashboardTodo extends DialogFragment {
     EditText dueDate;
     CheckBox done;
     Button saveButton;
+    Button cancelButton;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -74,7 +76,11 @@ public class DashboardTodo extends DialogFragment {
         newTod.setCreatedBy(userId);
         newTod.setFinished(done.isChecked());
         Db.push().setValue(newTod);
+        getActivity().onBackPressed();
+    }
 
+    public void cancelO(){
+        getActivity().onBackPressed();
     }
 
     @Override
@@ -88,7 +94,6 @@ public class DashboardTodo extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //TODO for tablets use other layout
         View v = inflater.inflate(R.layout.dashboard_todo,container,false);
-
         description = v.findViewById(R.id.description);
         Spinner = v.findViewById(R.id.assigneeItem);
         dueDate = v.findViewById(R.id.dueDateItem);
@@ -102,13 +107,20 @@ public class DashboardTodo extends DialogFragment {
                 saveText();
             }
         });
+        cancelButton = v.findViewById(R.id.cancelButton2);
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelO();
+            }
+        });
         return v;
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-
         DateFormat dateFormat = SimpleDateFormat.getTimeInstance(SimpleDateFormat.SHORT);
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dashboard_todo,null);
@@ -121,7 +133,7 @@ public class DashboardTodo extends DialogFragment {
         return new AlertDialog.Builder(getActivity())
                 .setView(view)
                 //.setIcon(R.drawable.alert_dialog_icon)
-                //.setTitle(title)
+               // .setTitle(title)
                 /*.setPositiveButton(R.string.alert_dialog_ok,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
