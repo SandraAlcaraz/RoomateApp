@@ -3,7 +3,6 @@ package com.example.sandra.roomate_app;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
-import android.os.Parcel;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -13,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,27 +24,25 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
-public class DashboardTodo extends DialogFragment implements NameListener {
+public class DashboardAnnouncement extends DialogFragment implements NameListener{
     private final static String ITEM = "item";
     private DatabaseReference Db;
-    Todo todo;
-    EditText description;
+    Announcement announcement;
+    EditText content;
     EditText Spinner;
-    EditText dueDate;
-    CheckBox done;
     Button saveButton;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef, userRef;
+    private FirebaseDatabase mFirebaseDatabase;
     private String userId, userName;
 
-    public static DashboardTodo newInstance(Todo dashboardItem) {
+    public static DashboardAnnouncement newInstance(Announcement dashboardItem) {
         Bundle args = new Bundle();
-        args.putParcelable(ITEM,dashboardItem);
-        DashboardTodo fragment = new DashboardTodo();
+        args.putParcelable(ITEM, dashboardItem);
+        DashboardAnnouncement fragment = new DashboardAnnouncement();
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,12 +51,13 @@ public class DashboardTodo extends DialogFragment implements NameListener {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(savedInstanceState!=null)
-            todo =savedInstanceState.getParcelable(ITEM);
-        if(getArguments()!=null && todo ==null)
-            todo = getArguments().getParcelable(ITEM);
+            announcement =savedInstanceState.getParcelable(ITEM);
+        if(getArguments()!=null && announcement ==null)
+            announcement = getArguments().getParcelable(ITEM);
         setStyle(STYLE_NO_FRAME,getTheme());
 
         mAuth = FirebaseAuth.getInstance();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         userId = user.getUid();
 
@@ -82,15 +79,12 @@ public class DashboardTodo extends DialogFragment implements NameListener {
     }
 
 
-    public void saveText(){
-        Db = FirebaseDatabase.getInstance().getReference().child("Tasks");
-        Todo newTod= new Todo();
-        newTod.setDescription(description.getText().toString());
-        newTod.setAssigneeName(Spinner.getText().toString());
-//        newTod.setDueDate((Date) dueDate.getText());
 
+    public void saveText(){
+        Db = FirebaseDatabase.getInstance().getReference().child("Announcements");
+        Announcement newTod= new Announcement();
+        newTod.setContent(content.getText().toString());
         newTod.setCreatedBy(userName);
-        newTod.setFinished(done.isChecked());
         Db.push().setValue(newTod);
 
     }
@@ -98,21 +92,18 @@ public class DashboardTodo extends DialogFragment implements NameListener {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelable(ITEM, todo);
+        outState.putParcelable(ITEM, announcement);
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //TODO for tablets use other layout
-        View v = inflater.inflate(R.layout.dashboard_todo,container,false);
+        View v = inflater.inflate(R.layout.dashboard_announcement,container,false);
 
-        description = v.findViewById(R.id.description);
-        Spinner = v.findViewById(R.id.assigneeItem);
-        dueDate = v.findViewById(R.id.dueDateItem);
-        done = v.findViewById(R.id.doneItem);
+        content = v.findViewById(R.id.description10);
 
-        saveButton = v.findViewById(R.id.saveButton2);
+        saveButton = v.findViewById(R.id.saveButton20);
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,11 +120,8 @@ public class DashboardTodo extends DialogFragment implements NameListener {
 
         DateFormat dateFormat = SimpleDateFormat.getTimeInstance(SimpleDateFormat.SHORT);
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.dashboard_todo,null);
-        ((TextView)view.findViewById(R.id.description)).setText(todo.getDescription());
-         String time = dateFormat.format(todo.getDueDate());
-        ((EditText)view.findViewById(R.id.dueDateItem)).setText(time);
-        ((CheckBox)view.findViewById(R.id.doneItem)).setChecked(todo.getFinished());
+        View view = inflater.inflate(R.layout.dashboard_announcement,null);
+        ((TextView)view.findViewById(R.id.description10)).setText(announcement.getContent());
 
 
         return new AlertDialog.Builder(getActivity())

@@ -38,7 +38,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/itemShoppingDesc"
+                android:id="@+id/itemAnnouncementContent"
                 android:layout_width="228dp"
                 android:layout_height="21dp"
                 android:layout_marginStart="8dp"
@@ -53,14 +53,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/itemShoppingAssignee"
+                android:id="@+id/itemAnnouncementCreatedBy"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="TextView"
-                app:layout_constraintEnd_toEndOf="@+id/itemShoppingDesc"
-                app:layout_constraintStart_toStartOf="@+id/itemShoppingDesc"
-                app:layout_constraintTop_toBottomOf="@+id/itemShoppingDesc" />
+                app:layout_constraintEnd_toEndOf="@+id/itemAnnouncementContent"
+                app:layout_constraintStart_toStartOf="@+id/itemAnnouncementContent"
+                app:layout_constraintTop_toBottomOf="@+id/itemAnnouncementContent" />
 
             <TextView
                 android:id="@+id/itemShoppingDueDate"
@@ -71,9 +71,9 @@
                 android:text="TextView"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/itemShoppingAssignee"
-                app:layout_constraintStart_toStartOf="@+id/itemShoppingAssignee"
-                app:layout_constraintTop_toBottomOf="@+id/itemShoppingAssignee" />
+                app:layout_constraintEnd_toEndOf="@+id/itemAnnouncementCreatedBy"
+                app:layout_constraintStart_toStartOf="@+id/itemAnnouncementCreatedBy"
+                app:layout_constraintTop_toBottomOf="@+id/itemAnnouncementCreatedBy" />
 
             <TextView
                 android:id="@+id/itemShoppingId"
@@ -109,8 +109,8 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginLeft="12dp"
                 android:text="Edit"
-                app:layout_constraintStart_toEndOf="@+id/itemShoppingDesc"
-                app:layout_constraintTop_toTopOf="@+id/itemShoppingDesc" />
+                app:layout_constraintStart_toEndOf="@+id/itemAnnouncementContent"
+                app:layout_constraintTop_toTopOf="@+id/itemAnnouncementContent" />
 
             <Button
                 android:id="@+id/button3"
