@@ -3,10 +3,11 @@ package com.example.sandra.roomate_app;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Date;
 
-public class Todo implements Parcelable {
+public class Todo implements Parcelable, Serializable {
     private String id, description, groupId, assigneeName, createdBy;
     private boolean finished;
     private Date createdAt, dueDate, finishedAt, updatedAt;
