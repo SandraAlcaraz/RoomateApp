@@ -23,7 +23,7 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="67dp">
 
             <CheckBox
                 android:id="@+id/checkBox2"
@@ -100,28 +100,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/button2"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="64dp"
-                android:layout_height="39dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginLeft="12dp"
-                android:text="Edit"
-                app:layout_constraintStart_toEndOf="@+id/itemAnnouncementContent"
-                app:layout_constraintTop_toTopOf="@+id/itemAnnouncementContent" />
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="36dp"
-                android:layout_height="33dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginLeft="12dp"
-                android:background="@android:drawable/ic_menu_delete"
-                android:textAppearance="@style/TextAppearance.AppCompat"
-                app:layout_constraintStart_toStartOf="@+id/button2"
-                app:layout_constraintTop_toBottomOf="@+id/button2" />
 
         </android.support.constraint.ConstraintLayout>
 
